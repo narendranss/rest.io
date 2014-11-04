@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.restio</groupId>
+	<artifactId>REST.IO</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>REST.IO</name>
+	<url>https://github.com/MadrasJUG/rest.io</url>
+	<description>
+		REST.IO is a sleek and beautiful RESTful web services testing client. There are some testing tools already available in the market. But still we wanted to build this for showing the love towards JAX-RS specification and RESTful world.
+	</description>
+
+
+	<developers>
+		<developer>
+				<id>Tham</id>
+				<name>Thamizharasu S</name>
+				<email>zarub2k@gmail.com</email>
+				<organization>MadrasJUG</organization>
+				<timezone>+5:30</timezone>
+		</developer>
+		<developer>
+				<id>Vidya</id>
+				<name>Vidhyadharan D</name>
+				<email>it.vidhyadharan@gmail.com</email>
+				<organization>MadrasJUG</organization>
+				<timezone>+5:30</timezone>
+		</developer>
+		<developer>
+				<id>Mani</id>
+				<name>Manigandan Venkataraman</name>
+				<email>shivamanik@gmail.com</email>
+				<organization>MadrasJUG</organization>
+				<timezone>+5:30</timezone>
+		</developer>
+		<developer>
+				<id>Ragunath</id>
+				<name>Ragunath Jawahar</name>
+				<email>ragunathjawahar@gmail.com</email>
+				<organization>MadrasJUG</organization>
+				<timezone>+5:30</timezone>
+		</developer>
+		<developer>
+				<id>Sree</id>
+				<name>Sreesaran Raghu</name>
+				<email>sreesaran.developer@gmail.com</email>
+				<organization>MadrasJUG</organization>
+				<timezone>+5:30</timezone>
+		</developer>
+		<developer>
+			<id>Naren</id>
+			<name>Narendran Solai Sridharan</name>
+			<email>narendran.ss@gmail.com</email>
+			<organization>MadrasJUG</organization>
+			<timezone>+5:30</timezone>
+		</developer>
+	</developers>
+	
+	
+
+	<!-- Artifact Repositories -->
+	<repositories>
+		<repository>
+			<id>repo1</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>cxf</id>
+			<url>http://git.apache.org/cxf.git</url>
+		</repository>
+	</repositories>
+
+	<!-- Plugin Repositories -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Plugin Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+		<pluginRepository>
+			<id>maven-snapshots</id>
+			<url>http://snapshots.repository.codehaus.org</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>apache-m2-snapshots</id>
+			<url>
+				http://people.apache.org/repo/m2-snapshot-repository
+			</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+	<properties>
+		<java-version>1.7</java-version>
+		<testng.version>6.8.8</testng.version>
+		<Junit.verion>4.11</Junit.verion>
+		<org.apache.tomcat.embedded.version>7.0.20</org.apache.tomcat.embedded.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+			<version>2.2.11</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+
+		<!-- <dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+		</dependency> -->
+
+		<dependency>
+			<groupId>org.glassfish.jersey.bundles</groupId>
+			<artifactId>jaxrs-ri</artifactId>
+			<version>2.11</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm-debug-all</artifactId>
+			<version>5.0.2</version>
+		</dependency>
+		
+	</dependencies>
+
+
+	<build>
+	<finalName>restio</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<port>9090</port>
+					<path>/${project.build.finalName}</path>
+					<update>true</update>
+					<!-- <warDirectory>C:\Users\Narendran\Documents\GitHub\rest.io\target\REST.IO-1.0-SNAPSHOT</warDirectory> -->
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+	
+<!-- 	<build>
+		<finalName>REST.IO</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.1.1.Final</version>
+				<configuration>
+					<hostname>localhost</hostname>
+					<port>9999</port>
+					<name>naren</name>
+					<password>naren@123</password>
+					<filename>
+						REST.IO.war
+					</filename>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build> -->
+
+</project>

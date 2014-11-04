@@ -1,13 +1,36 @@
 apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'war'
+apply plugin: 'jetty'
 
+group = 'com.restio'
+version = '1.0-SNAPSHOT'
 
-repositories {
-   mavenCentral()
+description = """REST.IO"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+configurations {
+    compile {
+        description = 'compile classpath'
+        transitive = true
+    }
+    runtime {
+        extendsFrom compile
+    }
+}
+configurations.compile {
+    description = 'compile classpath'
 }
 
+repositories {
+        
+     maven { url "http://repo1.maven.org/maven2" }
+     maven { url "http://git.apache.org/cxf.git" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
 dependencies {
-    
     compile     'org.glassfish.hk2.external:aopalliance-repackaged:2.3.0-b05'
     compile     'org.ow2.asm:asm-debug-all:5.0.2'
 
@@ -40,40 +63,4 @@ dependencies {
     compile    'javax.persistence:persistence-api:1.0'
 
     compile    'javax.validation:validation-api:1.1.0.Final'
-
- }
-
-
-task copyFiles(type: Copy) {
-  from sourceSets.main.compileClasspath
-  into 'WEB-INF/lib'
 }
-
-task compile (type: JavaCompile) {
-    source = file('src')
-    classpath = sourceSets.main.compileClasspath
-    destinationDir = file('classes')
-    println 'done'
-}
-
-task customJar(type: Jar) {
-  archiveName = 'restio.jar'
-  destinationDir = file('output')
- }
-
- task customWar(type: War) {
- from file('home.html')
- archiveName = 'restio.war'
- webInf { from 'WEB-INF' }
- destinationDir = file('output')
-}
-
-task copyWar(type:copy) {
-      from file('output')
-       includes = '*.war'
-      into '${tomcat.home}/webapps'
-
-}
-
-
-defaultTasks 'clean','Copy','compile', 'customJar','customWar'
